@@ -4,8 +4,17 @@
     <mappings />
     <preferences />
   </component>
+  <component name="DBNavigator.Project.DataEditorManager">
+    <record-view-column-sorting-type value="BY_INDEX" />
+    <value-preview-text-wrapping value="true" />
+    <value-preview-pinned value="false" />
+  </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
-    <assistants />
+    <assistants>
+      <assistant-state connection-id="321d4633-7158-44ce-8454-fe5b0b550d4e" default-profile-name="" selected-conversation-id="" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+        <conversations />
+      </assistant-state>
+    </assistants>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
@@ -15,11 +24,32 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="321d4633-7158-44ce-8454-fe5b0b550d4e">
-      <console name="jdbc_b349" type="STANDARD" schema="jdbc_b349" session="Main" />
+      <console name="jdbc_b349" type="STANDARD" schema="public" session="Main"><![CDATA[CREATE TABLE IF NOT EXISTS employees(employee_id INT, employee_name VARCHAR (30), salary INT);
+
+ALTER TABLE employees ADD COLUMN IF NOT EXISTS employee_address VARCHAR(40);
+
+INSERT INTO employees VALUES (01, 'John Doe', 1000, 'Texas, USA');
+
+INSERT INTO employees VALUES (02, 'jame Doe', 1500, 'Madrid, Spain');
+
+
+SELECT * FROM employees;]]></console>
     </connection>
+  </component>
+  <component name="DBNavigator.Project.DatabaseEditorStateManager">
+    <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="321d4633-7158-44ce-8454-fe5b0b550d4e" />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$USER_HOME$/Desktop/JDBC_B349/jdbc_b349.sql" connection-id="321d4633-7158-44ce-8454-fe5b0b550d4e" session-id="MAIN" current-schema="public" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -495,7 +525,7 @@
         <uncommitted-changes>
           <on-project-close value="ASK" />
           <on-disconnect value="ASK" />
-          <on-autocommit-toggle value="ASK" />
+          <on-autocommit-toggle value="COMMIT" />
         </uncommitted-changes>
         <multiple-uncommitted-changes>
           <on-commit value="ASK" />
@@ -563,5 +593,9 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
+    <execution-variable-types />
   </component>
 </project>

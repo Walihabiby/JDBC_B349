@@ -39,9 +39,29 @@ public class Execute01 {
             System.out.println("Connection is not successful!");
         }
 
+      /*  try {
+            Class.forName("org.postgresql.Driver"); // Optional in Java 7+
+
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:postgresql://localhost:5432/jdbc_b349",
+                    "b349_user",
+                    "Password!"
+            );
+
+            System.out.println("Connection is successful!");
+
+            // You can now use the 'connection' object here...
+
+        } catch (Exception e) {
+            System.out.println("Connection failed: " + e.getMessage());
+        }
+      */
+
+      // this way, if something goes wrong, Java catches the error and prints a message instead of crashing.
 
         //        Step 3: Create statement
         Statement statement = connection.createStatement();
+
 
         //        Step 4: Execute the query
         boolean query1 = statement.execute("CREATE TABLE IF NOT EXISTS employees(employee_id INT, employee_name VARCHAR (30), salary INT);");
@@ -85,6 +105,25 @@ public class Execute01 {
         }else {
             System.out.println("Connection is not closed!");
         }
+
+         /*
+            NOTES:
+            1. execute() method returns boolean
+            2. execute() method is used with DDL (CREATE, ALTER, DROP table), with DQL(reading the data using SELECT)
+               and DML(INSERT INTO, UPDATE).
+            3. With some queries, execute() method returns FALSE, with some other, it returns TRUE.
+
+            SELECT Statements (DQL): These statements are meant to retrieve data from the database. When such a statement is
+            executed, execute() returns true to indicate that a ResultSet has been produced.
+
+            INSERT, UPDATE, DELETE Statements (DML): These statements modify the data in the database but do not
+            produce a ResultSet. When such a statement is executed, execute() returns false.
+
+            DDL Statements: These statements alter the schema of the database (e.g., CREATE TABLE, ALTER TABLE).
+               These also do not produce a ResultSet, so execute() returns false.
+             */
+
+
 
 
     }
