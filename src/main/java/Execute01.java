@@ -27,11 +27,11 @@ public class Execute01 {
 
          */
 
-        //        Step 1: Register with Driver class (OPTIONAL) because it's not needed anymore (since JAVA 7)
+//        Step 1: Register with Driver class (OPTIONAL) because it's not needed anymore (since JAVA 7)
         Class.forName("org.postgresql.Driver");  // OPTIONAL
-        //        Step 2: Create connection with the database
-        //        Please check the port number if you get an error => port: 5432 OR 5433
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/jdbc_b349", "b349_user", "Password!");
+//        Step 2: Create connection with the database
+//        Please check the port number if you get an error => port: 5432 OR 5433
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/jdbc_b349", "b349_user", "Password!");
 
         if(connection != null){
             System.out.println("Connection is successful!");
@@ -39,31 +39,11 @@ public class Execute01 {
             System.out.println("Connection is not successful!");
         }
 
-      /*  try {
-            Class.forName("org.postgresql.Driver"); // Optional in Java 7+
 
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/jdbc_b349",
-                    "b349_user",
-                    "Password!"
-            );
-
-            System.out.println("Connection is successful!");
-
-            // You can now use the 'connection' object here...
-
-        } catch (Exception e) {
-            System.out.println("Connection failed: " + e.getMessage());
-        }
-      */
-
-      // this way, if something goes wrong, Java catches the error and prints a message instead of crashing.
-
-        //        Step 3: Create statement
+//        Step 3: Create statement
         Statement statement = connection.createStatement();
 
-
-        //        Step 4: Execute the query
+//        Step 4: Execute the query
         boolean query1 = statement.execute("CREATE TABLE IF NOT EXISTS employees(employee_id INT, employee_name VARCHAR (30), salary INT);");
         System.out.println("query1 = " + query1); // false because execute() method is working with a DDL query here and there is NO resultSet, hence execute() returns false
 
@@ -96,8 +76,25 @@ public class Execute01 {
         boolean query6 = statement.execute("DROP TABLE employees");
         System.out.println("query6 = " + query6); // false => DDL query
 
+         /*
+        NOTES:
+        1. execute() method returns boolean
+        2. execute() method is used with DDL (CREATE, ALTER, DROP table), with DQL(reading the data using SELECT)
+           and DML(INSERT INTO, UPDATE).
+        3. With some queries, execute() method returns FALSE, with some other, it returns TRUE.
 
-        //   Step 5: Close the connection
+        SELECT Statements (DQL): These statements are meant to retrieve data from the database. When such a statement is
+        executed, execute() returns true to indicate that a ResultSet has been produced.
+
+        INSERT, UPDATE, DELETE Statements (DML): These statements modify the data in the database but do not
+        produce a ResultSet. When such a statement is executed, execute() returns false.
+
+        DDL Statements: These statements alter the schema of the database (e.g., CREATE TABLE, ALTER TABLE).
+           These also do not produce a ResultSet, so execute() returns false.
+         */
+
+
+//        Step 5: Close the connection
         if (connection != null){
             statement.close();
             connection.close();
@@ -105,25 +102,6 @@ public class Execute01 {
         }else {
             System.out.println("Connection is not closed!");
         }
-
-         /*
-            NOTES:
-            1. execute() method returns boolean
-            2. execute() method is used with DDL (CREATE, ALTER, DROP table), with DQL(reading the data using SELECT)
-               and DML(INSERT INTO, UPDATE).
-            3. With some queries, execute() method returns FALSE, with some other, it returns TRUE.
-
-            SELECT Statements (DQL): These statements are meant to retrieve data from the database. When such a statement is
-            executed, execute() returns true to indicate that a ResultSet has been produced.
-
-            INSERT, UPDATE, DELETE Statements (DML): These statements modify the data in the database but do not
-            produce a ResultSet. When such a statement is executed, execute() returns false.
-
-            DDL Statements: These statements alter the schema of the database (e.g., CREATE TABLE, ALTER TABLE).
-               These also do not produce a ResultSet, so execute() returns false.
-             */
-
-
 
 
     }

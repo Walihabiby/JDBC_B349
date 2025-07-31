@@ -88,8 +88,6 @@ public class ExecuteQuery01 {
 
 
 
-
-
 //        Step 5: Close the connection
         if (connection != null){
             statement.close();
